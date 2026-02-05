@@ -228,6 +228,11 @@ export default function Home() {
                                 <div>
                                   <span className="font-medium text-slate-900 dark:text-white">{rule.label}</span>
                                   <p className="text-sm text-slate-600 dark:text-slate-400">{rule.explanation}</p>
+                                  {rule.details && (
+                                    <div className="mt-2 p-2 bg-slate-100 dark:bg-slate-700 rounded text-xs text-slate-700 dark:text-slate-300">
+                                      <strong>Details:</strong> {JSON.stringify(rule.details)}
+                                    </div>
+                                  )}
                                 </div>
                               </div>
                               <div className="text-right">
