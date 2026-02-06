@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import SEOScoreCard from '../components/SEOScoreCard';
 
 interface SEORule {
   id: string;
@@ -57,7 +58,8 @@ export default function Home() {
     setLoading(true);
     
     try {
-      const response = await fetch('https://api-seo-on-page.onrender.com/api/analyze', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/analyze';
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -100,7 +102,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen pt-48 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+    <div className="min-h-screen pt-48 bg-linear-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
         <div className="text-center mb-12">
@@ -178,82 +180,92 @@ export default function Home() {
               <div className="mt-12 space-y-8 animate-in slide-in-from-bottom-2 duration-500">
                 
                 {/* SEO Score */}
-                <div className={`p-6 rounded-xl ${getScoreBg(result.scorePercentage)} border border-slate-200 dark:border-slate-700`}>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-lg font-semibold text-slate-900 dark:text-white">SEO Score</h3>
-                      <p className="text-sm text-slate-600 dark:text-slate-400">Overall optimization level</p>
-                    </div>
-                    <div className="text-right">
-                      <div className={`text-3xl font-bold ${getScoreColor(result.scorePercentage)}`}>
-                        {result.scorePercentage}/100
-                      </div>
-                      <div className="text-sm text-slate-600 dark:text-slate-400">
-                        Total Score: {result.totalScore}/{result.totalMaxScore}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+  <SEOScoreCard 
+    score={result.scorePercentage}
+    date={new Date().toISOString().slice(0, 10)}
+    keyword={result.keyword}
+    url={result.url}
+  />
+    
 
                 {/* Sections Overview */}
                 <div className="grid gap-6">
-                  {result.sections.map((section) => (
-                    <div key={section.id} className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6">
-                      <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-lg font-semibold text-slate-900 dark:text-white">{section.label}</h3>
-                        <div className="text-right">
-                          <div className={`text-2xl font-bold ${getScoreColor(section.scorePercentage)}`}>
-                            {section.scorePercentage}%
-                          </div>
-                          <div className="text-sm text-slate-600 dark:text-slate-400">
-                            {section.score}/{section.maxScore} points
-                          </div>
-                        </div>
-                      </div>
-                      
-                      {/* Rules List */}
-                      <div className="space-y-3">
-                        {section.rules.map((rule) => (
-                          <div key={rule.id} className={`p-3 rounded-lg border ${
-                            rule.status === 'pass' 
-                              ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800' 
-                              : 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800'
-                          }`}>
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-3">
-                                <div className={`w-3 h-3 rounded-full ${
-                                  rule.status === 'pass' ? 'bg-green-500' : 'bg-red-500'
-                                }`}></div>
-                                <div>
-                                  <span className="font-medium text-slate-900 dark:text-white">{rule.label}</span>
-                                  <p className="text-sm text-slate-600 dark:text-slate-400">{rule.explanation}</p>
-                                  {rule.details && (
-                                    <div className="mt-2 p-2 bg-slate-100 dark:bg-slate-700 rounded text-xs text-slate-700 dark:text-slate-300">
-                                      <strong>Details:</strong> {JSON.stringify(rule.details)}
-                                    </div>
-                                  )}
-                                </div>
-                              </div>
-                              <div className="text-right">
-                                <span className={`text-sm font-medium ${
-                                  rule.status === 'pass' ? 'text-green-600' : 'text-red-600'
-                                }`}>
-                                  {rule.status === 'pass' ? 'PASS' : 'FAIL'}
-                                </span>
-                                <p className="text-sm text-slate-600 dark:text-slate-400">
-                                  {rule.score}/{rule.maxScore} points
-                                </p>
-                              </div>
+                  {result.sections.map((section) => {
+                    const sectionStatus = section.scorePercentage >= 80 ? 'good' : section.scorePercentage >= 60 ? 'average' : 'poor';
+                    const sectionStatusConfig = {
+                      good: {
+                        color: 'bg-green-100 text-green-700',
+                        badge: 'bg-green-500',
+                        label: 'Optimized',
+                      },
+                      average: {
+                        color: 'bg-yellow-100 text-yellow-700',
+                        badge: 'bg-yellow-500',
+                        label: 'Needs Improvement',
+                      },
+                      poor: {
+                        color: 'bg-red-100 text-red-700',
+                        badge: 'bg-red-500',
+                        label: 'Critical',
+                      },
+                    };
+                    const config = sectionStatusConfig[sectionStatus];
+                    return (
+                      <div key={section.id} className={`border border-slate-200 dark:border-slate-700 rounded-2xl shadow-lg p-6 ${config.color} dark:bg-slate-800`}> 
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="flex items-center gap-4">
+                            <div className={`w-10 h-10 flex items-center justify-center rounded-full font-bold text-white text-xl ${config.badge}`}>{section.scorePercentage}</div>
+                            <div>
+                              <h3 className="text-lg font-semibold text-slate-900 dark:text-white">{section.label}</h3>
+                              <span className="text-xs font-medium px-2 py-1 rounded-full bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 ml-1">{config.label}</span>
                             </div>
                           </div>
-                        ))}
+                          <div className="text-right">
+                            <div className="text-sm text-slate-600 dark:text-slate-400">
+                              {section.score}/{section.maxScore} points
+                            </div>
+                          </div>
+                        </div>
+                        {/* Rules List */}
+                        <div className="space-y-3">
+                          {section.rules.map((rule) => {
+                            const ruleStatus = rule.status === 'pass' ? 'good' : 'poor';
+                            const ruleConfig = ruleStatus === 'good'
+                              ? { bg: 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800', badge: 'bg-green-500', label: 'PASS', text: 'text-green-600' }
+                              : { bg: 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800', badge: 'bg-red-500', label: 'FAIL', text: 'text-red-600' };
+                            return (
+                              <div key={rule.id} className={`p-3 rounded-lg border ${ruleConfig.bg}`}>
+                                <div className="flex items-center justify-between">
+                                  <div className="flex items-center gap-3">
+                                    <div className={`w-3 h-3 rounded-full ${ruleConfig.badge}`}></div>
+                                    <div>
+                                      <span className="font-medium text-slate-900 dark:text-white">{rule.label}</span>
+                                      <p className="text-sm text-slate-600 dark:text-slate-400">{rule.explanation}</p>
+                                      {rule.details && (
+                                        <div className="mt-2 p-2 bg-slate-100 dark:bg-slate-700 rounded text-xs text-slate-700 dark:text-slate-300">
+                                          <strong>Details:</strong> {JSON.stringify(rule.details)}
+                                        </div>
+                                      )}
+                                    </div>
+                                  </div>
+                                  <div className="text-right">
+                                    <span className={`text-sm font-medium ${ruleConfig.text}`}>{ruleConfig.label}</span>
+                                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                                      {rule.score}/{rule.maxScore} points
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
 
                 {/* Summary */}
-                <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-slate-200 dark:border-slate-700 rounded-xl p-6">
+                <div className="bg-linear-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-slate-200 dark:border-slate-700 rounded-xl p-6">
                   <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Analysis Summary</h3>
                   <div className="grid md:grid-cols-2 gap-4 text-sm text-slate-700 dark:text-slate-300">
                     <div>
