@@ -247,7 +247,24 @@ export default function Home() {
                                           {typeof rule.details === 'object' && rule.details !== null ? (
                                             <ul className="list-disc pl-5 mt-1">
                                               {Object.entries(rule.details).map(([key, value]) => (
-                                                <li key={key} className="break-all"><span className="font-semibold">{key}:</span> {String(value)}</li>
+                                                <li key={key} className="break-all">
+                                                  <span className="font-semibold">{key}:</span> {Array.isArray(value)
+                                                    ? (
+                                                        <ul className="list-decimal pl-5 mt-1">
+                                                          {value.map((item, idx) => (
+                                                            <li key={idx} className="break-all">
+                                                              {typeof item === 'object' && item !== null
+                                                                ? <pre className="whitespace-pre-wrap bg-slate-200 dark:bg-slate-800 rounded p-1 overflow-x-auto">{JSON.stringify(item, null, 2)}</pre>
+                                                                : String(item)}
+                                                            </li>
+                                                          ))}
+                                                        </ul>
+                                                      )
+                                                    : (typeof value === 'object' && value !== null
+                                                        ? <pre className="whitespace-pre-wrap bg-slate-200 dark:bg-slate-800 rounded p-1 overflow-x-auto">{JSON.stringify(value, null, 2)}</pre>
+                                                        : String(value)
+                                                    )}
+                                                </li>
                                               ))}
                                             </ul>
                                           ) : (

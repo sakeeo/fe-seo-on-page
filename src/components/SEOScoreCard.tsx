@@ -150,7 +150,7 @@ export default function SEOScoreCard({
             </text>
           </svg>
           {/* Score label */}
-          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-slate-400 font-medium">
+          <div className="p-4 absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-slate-400 font-medium">
             out of 100
           </div>
         </div>
