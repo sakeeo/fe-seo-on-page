@@ -100,16 +100,15 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+    <div className="min-h-screen pt-48 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
-            SEO Analysis Tool
+            On-Page SEO Analysis Tool
           </h1>
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            Enter a website URL and target keyword to get a comprehensive SEO analysis 
-            with actionable insights to improve your search engine rankings.
+           This tool analyzes on-page SEO issues for a specific URL and target keyword, and provides clear recommendations to fix the most critical problems.
           </p>
         </div>
 
