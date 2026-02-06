@@ -102,7 +102,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen pt-48 bg-linear-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+    <div className="min-h-screen bg-linear-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
         <div className="text-center mb-12">
@@ -243,7 +243,16 @@ export default function Home() {
                                       <p className="text-sm text-slate-600 dark:text-slate-400">{rule.explanation}</p>
                                       {rule.details && (
                                         <div className="mt-2 p-2 bg-slate-100 dark:bg-slate-700 rounded text-xs text-slate-700 dark:text-slate-300">
-                                          <strong>Details:</strong> {JSON.stringify(rule.details)}
+                                          <strong>Details:</strong>
+                                          {typeof rule.details === 'object' && rule.details !== null ? (
+                                            <ul className="list-disc pl-5 mt-1">
+                                              {Object.entries(rule.details).map(([key, value]) => (
+                                                <li key={key} className="break-all"><span className="font-semibold">{key}:</span> {String(value)}</li>
+                                              ))}
+                                            </ul>
+                                          ) : (
+                                            <span className="ml-1">{String(rule.details)}</span>
+                                          )}
                                         </div>
                                       )}
                                     </div>
