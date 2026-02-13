@@ -165,7 +165,7 @@ export default function Home() {
                   View sample report
                 </button> */}
               </div>
-              <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500">
+              <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
                 <span>• No credit card</span>
                 <span>• Instant results</span>
                 <span>• Focused on on-page SEO</span>
@@ -242,23 +242,21 @@ export default function Home() {
           </section>
         </section>
 
-        {/* Results Section - full width layout */}
+        {/* Results Section - score full-width, details below */}
         {result && (
           <section
             aria-label="SEO analysis report"
-            className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] items-start"
+            className="space-y-6"
           >
-            <div className="space-y-4">
-              <SEOScoreCard
-                score={result.scorePercentage}
-                date={new Date().toISOString().slice(0, 10)}
-                keyword={result.keyword}
-                url={result.url}
-              />
-            </div>
+            <SEOScoreCard
+              score={result.scorePercentage}
+              date={new Date().toISOString().slice(0, 10)}
+              keyword={result.keyword}
+              url={result.url}
+            />
 
             {/* Sections Overview */}
-            <div className="space-y-5">
+            <div className="grid gap-5 lg:grid-cols-2">
               {result.sections.map((section) => {
                 const sectionStatus = section.scorePercentage >= 80 ? 'good' : section.scorePercentage >= 60 ? 'average' : 'poor';
                 const sectionStatusConfig = {
@@ -372,8 +370,8 @@ export default function Home() {
         {/* How it works */}
         <section id="how-it-works" className="space-y-6">
           <div className="space-y-2">
-            <h2 className="text-xl font-semibold text-slate-900">How See On Page works</h2>
-            <p className="text-sm text-slate-600 max-w-2xl">
+            <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-50">How See On Page works</h2>
+            <p className="text-sm text-slate-600 dark:text-slate-300 max-w-2xl">
               We run a focused, on-page SEO review for the URL and keyword you provide, then group findings into clear sections so you know exactly what to fix.
             </p>
           </div>
@@ -405,8 +403,8 @@ export default function Home() {
         {/* FAQ */}
         <section id="faq" className="space-y-6 pb-8">
           <div className="space-y-2">
-            <h2 className="text-xl font-semibold text-slate-900">Frequently asked questions</h2>
-            <p className="text-sm text-slate-600 max-w-2xl">
+            <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-50">Frequently asked questions</h2>
+            <p className="text-sm text-slate-600 dark:text-slate-300 max-w-2xl">
               A few quick answers about how the free on-page SEO tool works.
             </p>
           </div>
