@@ -89,160 +89,230 @@ export default function Home() {
     }
   };
 
-  const getScoreColor = (score: number) => {
-    if (score >= 80) return 'text-green-600';
-    if (score >= 60) return 'text-yellow-600';
-    return 'text-red-600';
-  };
-
-  const getScoreBg = (score: number) => {
-    if (score >= 80) return 'bg-green-100';
-    if (score >= 60) return 'bg-yellow-100';
-    return 'bg-red-100';
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#84994F] to-[#FFE797]">
-      <div className="container mx-auto px-4 py-12">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-white mb-4 drop-shadow-lg">
-            On-Page SEO Analysis Tool
-          </h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-           This tool analyzes on-page SEO issues for a specific URL and target keyword, and provides clear recommendations to fix the most critical problems.
-          </p>
+    <div className="min-h-screen bg-[#F5F5F7] text-slate-900">
+      {/* Top navigation */}
+      <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
+        <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[#84994F]/10 text-[#84994F] font-bold">
+              S
+            </span>
+            <div className="leading-tight">
+              <span className="block text-sm font-semibold tracking-tight text-slate-900">
+                SEE ON PAGE
+              </span>
+              <span className="block text-xs text-slate-500">
+                On-page SEO free tool
+              </span>
+            </div>
+          </div>
+          <nav className="hidden md:flex items-center gap-6 text-sm text-slate-600">
+            <a href="#tool" className="hover:text-slate-900">
+              Tool
+            </a>
+            <a href="#how-it-works" className="hover:text-slate-900">
+              How it works
+            </a>
+            <a href="#faq" className="hover:text-slate-900">
+              FAQ
+            </a>
+          </nav>
+          <div className="flex items-center gap-3">
+            {/* <button className="hidden md:inline-flex text-sm text-slate-600 hover:text-slate-900">
+              Log in
+            </button> */}
+            <a
+              href="#tool"
+              className="inline-flex items-center justify-center rounded-full bg-[#FCB53B] px-4 py-2 text-sm font-semibold text-[#171717] shadow-sm hover:bg-[#e2a634] transition-colors"
+            >
+              Run free SEO check
+            </a>
+          </div>
         </div>
+      </header>
 
-        {/* Main Content */}
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-white/20">
-            
+      <main className="max-w-5xl mx-auto px-4 py-10 space-y-16">
+        {/* Hero + tool */}
+        <section id="hero" className="grid gap-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] items-start">
+          <div className="space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#FFE797]/60 px-3 py-1 text-xs font-medium text-[#171717]">
+              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white text-[10px] font-bold text-[#84994F]">
+                ●
+              </span>
+              100% free on-page SEO checker
+            </div>
+            <div className="space-y-3">
+              <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900">
+                See your on-page SEO health in seconds.
+              </h1>
+              <p className="text-sm md:text-base text-slate-600 max-w-xl">
+                Enter a page URL and target keyword. We analyze your on-page SEO and surface clear, prioritized fixes you can act on today.
+              </p>
+            </div>
+            <div className="space-y-3">
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href="#tool"
+                  className="inline-flex items-center justify-center rounded-full bg-[#FCB53B] px-5 py-2.5 text-sm font-semibold text-[#171717] shadow-sm hover:bg-[#e2a634] transition-colors"
+                >
+                  Run free SEO analysis
+                </a>
+                {/* <button
+                  type="button"
+                  className="text-sm font-medium text-[#84994F] hover:text-[#6a7a3f]"
+                >
+                  View sample report
+                </button> */}
+              </div>
+              <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500">
+                <span>• No credit card</span>
+                <span>• Instant results</span>
+                <span>• Focused on on-page SEO</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Tool card */}
+          <section
+            id="tool"
+            aria-label="On-page SEO analysis tool"
+            className="bg-white rounded-2xl shadow-md border border-slate-200 p-6 md:p-7"
+          >
+            <h2 className="text-base font-semibold text-slate-900 mb-4">
+              Run a free on-page SEO check
+            </h2>
+
             {/* Input Form */}
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="url" className="block text-sm font-medium text-slate-700 mb-2">
-                    Website URL
-                  </label>
-                  <input
-                    type="url"
-                    id="url"
-                    value={url}
-                    onChange={(e) => setUrl(e.target.value)}
-                    placeholder="https://example.com"
-                    className="w-full px-4 py-3 border border-[#84994F]/30 rounded-lg focus:ring-2 focus:ring-[#84994F] focus:border-transparent bg-white text-slate-900 transition-all duration-200 hover:border-[#84994F]/50"
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="keyword" className="block text-sm font-medium text-slate-700 mb-2">
-                    Target Keyword
-                  </label>
-                  <input
-                    type="text"
-                    id="keyword"
-                    value={keyword}
-                    onChange={(e) => setKeyword(e.target.value)}
-                    placeholder="your target keyword"
-                    className="w-full px-4 py-3 border border-[#84994F]/30 rounded-lg focus:ring-2 focus:ring-[#84994F] focus:border-transparent bg-white text-slate-900 transition-all duration-200 hover:border-[#84994F]/50"
-                    required
-                  />
-                </div>
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="space-y-2">
+                <label htmlFor="url" className="block text-xs font-medium text-slate-700">
+                  Page URL
+                </label>
+                <input
+                  type="url"
+                  id="url"
+                  value={url}
+                  onChange={(e) => setUrl(e.target.value)}
+                  placeholder="https://example.com/your-page"
+                  className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm focus:border-[#84994F] focus:outline-none focus:ring-2 focus:ring-[#84994F]/40"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="keyword" className="block text-xs font-medium text-slate-700">
+                  Target keyword
+                </label>
+                <input
+                  type="text"
+                  id="keyword"
+                  value={keyword}
+                  onChange={(e) => setKeyword(e.target.value)}
+                  placeholder="e.g. best running shoes for women"
+                  className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm focus:border-[#84994F] focus:outline-none focus:ring-2 focus:ring-[#84994F]/40"
+                  required
+                />
               </div>
 
               {error && (
-                <div className="bg-[#A72703]/10 border border-[#A72703]/30 text-[#A72703] px-4 py-3 rounded-lg">
+                <div className="rounded-lg border border-[#A72703]/30 bg-[#A72703]/5 px-3 py-2 text-xs text-[#A72703]">
                   {error}
                 </div>
               )}
 
-              <div className="flex justify-center">
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="bg-[#84994F] hover:bg-[#6a7a3f] disabled:bg-[#84994F]/50 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:transform-none"
-                >
-                  {loading ? (
-                    <div className="flex items-center gap-3">
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                      Analyzing...
-                    </div>
-                  ) : (
-                    'Analyze SEO'
-                  )}
-                </button>
-              </div>
+              <button
+                type="submit"
+                disabled={loading}
+                className="inline-flex w-full items-center justify-center rounded-full bg-[#84994F] px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#6a7a3f] disabled:cursor-not-allowed disabled:bg-[#84994F]/60"
+              >
+                {loading ? (
+                  <div className="flex items-center gap-2">
+                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                    Analyzing…
+                  </div>
+                ) : (
+                  'Analyze SEO'
+                )}
+              </button>
+
+              <p className="text-[11px] text-slate-500">
+                We only use your URL to run this analysis. No crawling beyond the page you provide.
+              </p>
             </form>
 
             {/* Results Section */}
             {result && (
-              <div className="mt-12 space-y-8 animate-in slide-in-from-bottom-2 duration-500">
-                
-                {/* SEO Score */}
-  <SEOScoreCard 
-    score={result.scorePercentage}
-    date={new Date().toISOString().slice(0, 10)}
-    keyword={result.keyword}
-    url={result.url}
-  />
-    
+              <div className="mt-8 space-y-6">
+                <SEOScoreCard
+                  score={result.scorePercentage}
+                  date={new Date().toISOString().slice(0, 10)}
+                  keyword={result.keyword}
+                  url={result.url}
+                />
 
                 {/* Sections Overview */}
-                <div className="grid gap-6">
+                <div className="grid gap-5">
                   {result.sections.map((section) => {
                     const sectionStatus = section.scorePercentage >= 80 ? 'good' : section.scorePercentage >= 60 ? 'average' : 'poor';
                     const sectionStatusConfig = {
                       good: {
-                        color: 'bg-[#84994F]/10 text-[#84994F]',
+                        color: 'bg-[#84994F]/5 text-[#84994F]',
                         badge: 'bg-[#84994F]',
                         label: 'Optimized',
                       },
                       average: {
-                        color: 'bg-[#FCB53B]/10 text-[#FCB53B]',
+                        color: 'bg-[#FCB53B]/5 text-[#FCB53B]',
                         badge: 'bg-[#FCB53B]',
-                        label: 'Needs Improvement',
+                        label: 'Needs improvement',
                       },
                       poor: {
-                        color: 'bg-[#A72703]/10 text-[#A72703]',
+                        color: 'bg-[#A72703]/5 text-[#A72703]',
                         badge: 'bg-[#A72703]',
                         label: 'Critical',
                       },
-                    };
+                    } as const;
                     const config = sectionStatusConfig[sectionStatus];
                     return (
-                      <div key={section.id} className={`border border-[#84994F]/20 rounded-2xl shadow-lg p-6 ${config.color} transition-all duration-200 hover:border-[#84994F]/40`}> 
+                      <div
+                        key={section.id}
+                        className={`border border-slate-200 rounded-xl bg-white p-4 text-sm ${config.color}`}
+                      >
                         <div className="flex items-center justify-between mb-4">
                           <div className="flex items-center gap-4">
                             <div className={`w-10 h-10 flex items-center justify-center rounded-full font-bold text-white text-xl ${config.badge}`}>{section.scorePercentage}</div>
                             <div>
-                              <h3 className="text-lg font-semibold text-slate-900">{section.label}</h3>
-                              <span className="text-xs font-medium px-2 py-1 rounded-full bg-white border border-[#84994F]/30 text-slate-700">{config.label}</span>
+                              <h3 className="text-sm font-semibold text-slate-900">{section.label}</h3>
+                              <span className="mt-1 inline-flex text-[11px] font-medium px-2 py-0.5 rounded-full bg-[#F5F5F7] border border-slate-200 text-slate-700">
+                                {config.label}
+                              </span>
                             </div>
                           </div>
                           <div className="text-right">
-                            <div className="text-sm text-slate-600">
+                            <div className="text-xs text-slate-500">
                               {section.score}/{section.maxScore} points
                             </div>
                           </div>
                         </div>
                         {/* Rules List */}
-                        <div className="space-y-3">
+                        <div className="space-y-2">
                           {section.rules.map((rule) => {
                             const ruleStatus = rule.status === 'pass' ? 'good' : 'poor';
                             const ruleConfig = ruleStatus === 'good'
                               ? { bg: 'bg-[#84994F]/5 border-[#84994F]/20', badge: 'bg-[#84994F]', label: 'PASS', text: 'text-[#84994F]' }
-                              : { bg: 'bg-[#A72703]/5 border-[#A72703]/20', badge: 'bg-[#A72703]', label: 'FAIL', text: 'text-[#A72703]' };
+                              : { bg: 'bg-[#A72703]/5 border-[#A72703]/20', badge: 'bg-[#A72703]', label: 'ISSUE', text: 'text-[#A72703]' };
                             return (
-                              <div key={rule.id} className={`p-3 rounded-lg border ${ruleConfig.bg} transition-all duration-200 hover:border-[#84994F]/40`}>
+                              <div
+                                key={rule.id}
+                                className={`p-3 rounded-lg border ${ruleConfig.bg}`}
+                              >
                                 <div className="flex items-center justify-between">
                                   <div className="flex items-center gap-3">
                                     <div className={`w-3 h-3 rounded-full ${ruleConfig.badge}`}></div>
                                     <div>
-                                      <span className="font-medium text-slate-900">{rule.label}</span>
-                                      <p className="text-sm text-slate-600">{rule.explanation}</p>
+                                      <span className="font-medium text-slate-900 text-sm">{rule.label}</span>
+                                      <p className="text-xs text-slate-600 mt-0.5">{rule.explanation}</p>
                                       {rule.details && (
-                                        <div className="mt-2 p-2 bg-slate-100 rounded text-xs text-slate-700">
+                                        <div className="mt-2 p-2 bg-slate-100 rounded text-[11px] text-slate-700">
                                           <strong>Details:</strong>
                                           {typeof rule.details === 'object' && rule.details !== null ? (
                                             <ul className="list-disc pl-5 mt-1">
@@ -275,8 +345,8 @@ export default function Home() {
                                     </div>
                                   </div>
                                   <div className="text-right">
-                                    <span className={`text-sm font-medium ${ruleConfig.text}`}>{ruleConfig.label}</span>
-                                    <p className="text-sm text-slate-600">
+                                    <span className={`text-xs font-semibold ${ruleConfig.text}`}>{ruleConfig.label}</span>
+                                    <p className="text-xs text-slate-600 mt-1">
                                       {rule.score}/{rule.maxScore} points
                                     </p>
                                   </div>
@@ -290,28 +360,95 @@ export default function Home() {
                   })}
                 </div>
 
-                {/* Summary */}
-                <div className="bg-gradient-to-r from-[#84994F]/5 to-[#FFE797]/5 border border-[#84994F]/20 rounded-xl p-6">
-                  <h3 className="text-lg font-semibold text-slate-900 mb-2">Analysis Summary</h3>
-                  <div className="grid md:grid-cols-2 gap-4 text-sm text-slate-700">
-                    <div>
-                      <span className="font-medium">Analyzed URL:</span> {result.url}
-                    </div>
-                    <div>
-                      <span className="font-medium">Target Keyword:</span> {result.keyword}
-                    </div>
-                    <div>
-                      <span className="font-medium">HTTP Status:</span> {result.httpStatus}
-                    </div>
-                    <div>
-                      <span className="font-medium">Total Score:</span> {result.totalScore}/{result.totalMaxScore}
-                    </div>
-                  </div>
-                </div>
               </div>
             )}
+          </section>
+        </section>
+
+        {/* How it works */}
+        <section id="how-it-works" className="space-y-6">
+          <div className="space-y-2">
+            <h2 className="text-xl font-semibold text-slate-900">How See On Page works</h2>
+            <p className="text-sm text-slate-600 max-w-2xl">
+              We run a focused, on-page SEO review for the URL and keyword you provide, then group findings into clear sections so you know exactly what to fix.
+            </p>
           </div>
-        </div>
+          <div className="grid gap-4 md:grid-cols-3 text-sm">
+            <div className="rounded-xl border border-slate-200 bg-white p-4">
+              <span className="text-xs font-semibold text-[#84994F]">Step 1</span>
+              <h3 className="mt-2 text-sm font-semibold text-slate-900">Enter your URL & keyword</h3>
+              <p className="mt-1 text-xs text-slate-600">
+                Paste the page you want to check and the main keyword you want to rank for.
+              </p>
+            </div>
+            <div className="rounded-xl border border-slate-200 bg-white p-4">
+              <span className="text-xs font-semibold text-[#84994F]">Step 2</span>
+              <h3 className="mt-2 text-sm font-semibold text-slate-900">We run the analysis</h3>
+              <p className="mt-1 text-xs text-slate-600">
+                Our engine checks titles, headings, content, links, and technical on-page factors.
+              </p>
+            </div>
+            <div className="rounded-xl border border-slate-200 bg-white p-4">
+              <span className="text-xs font-semibold text-[#84994F]">Step 3</span>
+              <h3 className="mt-2 text-sm font-semibold text-slate-900">Get a prioritized checklist</h3>
+              <p className="mt-1 text-xs text-slate-600">
+                See your score and a list of issues, grouped by impact, with clear context.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section id="faq" className="space-y-6 pb-8">
+          <div className="space-y-2">
+            <h2 className="text-xl font-semibold text-slate-900">Frequently asked questions</h2>
+            <p className="text-sm text-slate-600 max-w-2xl">
+              A few quick answers about how the free on-page SEO tool works.
+            </p>
+          </div>
+          <div className="space-y-3 text-sm">
+            <details className="group rounded-xl border border-slate-200 bg-white p-4">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-medium text-slate-900">
+                Is this tool really free?
+                <span className="text-xs text-slate-500 group-open:hidden">+</span>
+                <span className="text-xs text-slate-500 hidden group-open:inline">−</span>
+              </summary>
+              <p className="mt-2 text-xs text-slate-600">
+                Yes. You can run on-page SEO checks without creating an account or adding a credit card.
+              </p>
+            </details>
+            <details className="group rounded-xl border border-slate-200 bg-white p-4">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-medium text-slate-900">
+                Do you store my URLs or data?
+                <span className="text-xs text-slate-500 group-open:hidden">+</span>
+                <span className="text-xs text-slate-500 hidden group-open:inline">−</span>
+              </summary>
+              <p className="mt-2 text-xs text-slate-600">
+                We only use the URL and keyword you provide to run the analysis. You can clear results at any time by refreshing the page.
+              </p>
+            </details>
+            <details className="group rounded-xl border border-slate-200 bg-white p-4">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-medium text-slate-900">
+                What does the SEO score mean?
+                <span className="text-xs text-slate-500 group-open:hidden">+</span>
+                <span className="text-xs text-slate-500 hidden group-open:inline">−</span>
+              </summary>
+              <p className="mt-2 text-xs text-slate-600">
+                The score summarizes how well your page follows our on-page SEO checks for the keyword you entered. Use it as a guide to prioritize fixes, not as a guarantee of rankings.
+              </p>
+            </details>
+          </div>
+        </section>
+      </main>
+
+      {/* Mobile sticky CTA */}
+      <div className="fixed inset-x-0 bottom-4 px-4 md:hidden">
+        <a
+          href="#tool"
+          className="inline-flex w-full max-w-md mx-auto items-center justify-center rounded-full bg-[#FCB53B] px-5 py-3 text-sm font-semibold text-[#171717] shadow-md hover:bg-[#e2a634] transition-colors"
+        >
+          Run free SEO check
+        </a>
       </div>
     </div>
   );
