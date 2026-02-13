@@ -102,27 +102,27 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+    <div className="min-h-screen bg-gradient-to-br from-[#84994F] to-[#FFE797]">
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
+          <h1 className="text-5xl font-bold text-white mb-4 drop-shadow-lg">
             On-Page SEO Analysis Tool
           </h1>
-          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+          <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
            This tool analyzes on-page SEO issues for a specific URL and target keyword, and provides clear recommendations to fix the most critical problems.
           </p>
         </div>
 
         {/* Main Content */}
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
+          <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-white/20">
             
             {/* Input Form */}
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="url" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                  <label htmlFor="url" className="block text-sm font-medium text-slate-700 mb-2">
                     Website URL
                   </label>
                   <input
@@ -131,12 +131,12 @@ export default function Home() {
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
                     placeholder="https://example.com"
-                    className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-white transition-all"
+                    className="w-full px-4 py-3 border border-[#84994F]/30 rounded-lg focus:ring-2 focus:ring-[#84994F] focus:border-transparent bg-white text-slate-900 transition-all duration-200 hover:border-[#84994F]/50"
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="keyword" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                  <label htmlFor="keyword" className="block text-sm font-medium text-slate-700 mb-2">
                     Target Keyword
                   </label>
                   <input
@@ -145,14 +145,14 @@ export default function Home() {
                     value={keyword}
                     onChange={(e) => setKeyword(e.target.value)}
                     placeholder="your target keyword"
-                    className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-white transition-all"
+                    className="w-full px-4 py-3 border border-[#84994F]/30 rounded-lg focus:ring-2 focus:ring-[#84994F] focus:border-transparent bg-white text-slate-900 transition-all duration-200 hover:border-[#84994F]/50"
                     required
                   />
                 </div>
               </div>
 
               {error && (
-                <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 px-4 py-3 rounded-lg">
+                <div className="bg-[#A72703]/10 border border-[#A72703]/30 text-[#A72703] px-4 py-3 rounded-lg">
                   {error}
                 </div>
               )}
@@ -161,7 +161,7 @@ export default function Home() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:transform-none"
+                  className="bg-[#84994F] hover:bg-[#6a7a3f] disabled:bg-[#84994F]/50 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:transform-none"
                 >
                   {loading ? (
                     <div className="flex items-center gap-3">
@@ -194,34 +194,34 @@ export default function Home() {
                     const sectionStatus = section.scorePercentage >= 80 ? 'good' : section.scorePercentage >= 60 ? 'average' : 'poor';
                     const sectionStatusConfig = {
                       good: {
-                        color: 'bg-green-100 text-green-700',
-                        badge: 'bg-green-500',
+                        color: 'bg-[#84994F]/10 text-[#84994F]',
+                        badge: 'bg-[#84994F]',
                         label: 'Optimized',
                       },
                       average: {
-                        color: 'bg-yellow-100 text-yellow-700',
-                        badge: 'bg-yellow-500',
+                        color: 'bg-[#FCB53B]/10 text-[#FCB53B]',
+                        badge: 'bg-[#FCB53B]',
                         label: 'Needs Improvement',
                       },
                       poor: {
-                        color: 'bg-red-100 text-red-700',
-                        badge: 'bg-red-500',
+                        color: 'bg-[#A72703]/10 text-[#A72703]',
+                        badge: 'bg-[#A72703]',
                         label: 'Critical',
                       },
                     };
                     const config = sectionStatusConfig[sectionStatus];
                     return (
-                      <div key={section.id} className={`border border-slate-200 dark:border-slate-700 rounded-2xl shadow-lg p-6 ${config.color} dark:bg-slate-800`}> 
+                      <div key={section.id} className={`border border-[#84994F]/20 rounded-2xl shadow-lg p-6 ${config.color} transition-all duration-200 hover:border-[#84994F]/40`}> 
                         <div className="flex items-center justify-between mb-4">
                           <div className="flex items-center gap-4">
                             <div className={`w-10 h-10 flex items-center justify-center rounded-full font-bold text-white text-xl ${config.badge}`}>{section.scorePercentage}</div>
                             <div>
-                              <h3 className="text-lg font-semibold text-slate-900 dark:text-white">{section.label}</h3>
-                              <span className="text-xs font-medium px-2 py-1 rounded-full bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 ml-1">{config.label}</span>
+                              <h3 className="text-lg font-semibold text-slate-900">{section.label}</h3>
+                              <span className="text-xs font-medium px-2 py-1 rounded-full bg-white border border-[#84994F]/30 text-slate-700">{config.label}</span>
                             </div>
                           </div>
                           <div className="text-right">
-                            <div className="text-sm text-slate-600 dark:text-slate-400">
+                            <div className="text-sm text-slate-600">
                               {section.score}/{section.maxScore} points
                             </div>
                           </div>
@@ -231,18 +231,18 @@ export default function Home() {
                           {section.rules.map((rule) => {
                             const ruleStatus = rule.status === 'pass' ? 'good' : 'poor';
                             const ruleConfig = ruleStatus === 'good'
-                              ? { bg: 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800', badge: 'bg-green-500', label: 'PASS', text: 'text-green-600' }
-                              : { bg: 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800', badge: 'bg-red-500', label: 'FAIL', text: 'text-red-600' };
+                              ? { bg: 'bg-[#84994F]/5 border-[#84994F]/20', badge: 'bg-[#84994F]', label: 'PASS', text: 'text-[#84994F]' }
+                              : { bg: 'bg-[#A72703]/5 border-[#A72703]/20', badge: 'bg-[#A72703]', label: 'FAIL', text: 'text-[#A72703]' };
                             return (
-                              <div key={rule.id} className={`p-3 rounded-lg border ${ruleConfig.bg}`}>
+                              <div key={rule.id} className={`p-3 rounded-lg border ${ruleConfig.bg} transition-all duration-200 hover:border-[#84994F]/40`}>
                                 <div className="flex items-center justify-between">
                                   <div className="flex items-center gap-3">
                                     <div className={`w-3 h-3 rounded-full ${ruleConfig.badge}`}></div>
                                     <div>
-                                      <span className="font-medium text-slate-900 dark:text-white">{rule.label}</span>
-                                      <p className="text-sm text-slate-600 dark:text-slate-400">{rule.explanation}</p>
+                                      <span className="font-medium text-slate-900">{rule.label}</span>
+                                      <p className="text-sm text-slate-600">{rule.explanation}</p>
                                       {rule.details && (
-                                        <div className="mt-2 p-2 bg-slate-100 dark:bg-slate-700 rounded text-xs text-slate-700 dark:text-slate-300">
+                                        <div className="mt-2 p-2 bg-slate-100 rounded text-xs text-slate-700">
                                           <strong>Details:</strong>
                                           {typeof rule.details === 'object' && rule.details !== null ? (
                                             <ul className="list-disc pl-5 mt-1">
@@ -254,14 +254,14 @@ export default function Home() {
                                                           {value.map((item, idx) => (
                                                             <li key={idx} className="break-all">
                                                               {typeof item === 'object' && item !== null
-                                                                ? <pre className="whitespace-pre-wrap bg-slate-200 dark:bg-slate-800 rounded p-1 overflow-x-auto">{JSON.stringify(item, null, 2)}</pre>
+                                                                ? <pre className="whitespace-pre-wrap bg-slate-200 rounded p-1 overflow-x-auto">{JSON.stringify(item, null, 2)}</pre>
                                                                 : String(item)}
                                                             </li>
                                                           ))}
                                                         </ul>
                                                       )
                                                     : (typeof value === 'object' && value !== null
-                                                        ? <pre className="whitespace-pre-wrap bg-slate-200 dark:bg-slate-800 rounded p-1 overflow-x-auto">{JSON.stringify(value, null, 2)}</pre>
+                                                        ? <pre className="whitespace-pre-wrap bg-slate-200 rounded p-1 overflow-x-auto">{JSON.stringify(value, null, 2)}</pre>
                                                         : String(value)
                                                     )}
                                                 </li>
@@ -276,7 +276,7 @@ export default function Home() {
                                   </div>
                                   <div className="text-right">
                                     <span className={`text-sm font-medium ${ruleConfig.text}`}>{ruleConfig.label}</span>
-                                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                                    <p className="text-sm text-slate-600">
                                       {rule.score}/{rule.maxScore} points
                                     </p>
                                   </div>
@@ -291,9 +291,9 @@ export default function Home() {
                 </div>
 
                 {/* Summary */}
-                <div className="bg-linear-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-slate-200 dark:border-slate-700 rounded-xl p-6">
-                  <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Analysis Summary</h3>
-                  <div className="grid md:grid-cols-2 gap-4 text-sm text-slate-700 dark:text-slate-300">
+                <div className="bg-gradient-to-r from-[#84994F]/5 to-[#FFE797]/5 border border-[#84994F]/20 rounded-xl p-6">
+                  <h3 className="text-lg font-semibold text-slate-900 mb-2">Analysis Summary</h3>
+                  <div className="grid md:grid-cols-2 gap-4 text-sm text-slate-700">
                     <div>
                       <span className="font-medium">Analyzed URL:</span> {result.url}
                     </div>
