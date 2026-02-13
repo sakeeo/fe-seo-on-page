@@ -90,10 +90,10 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F5F7] text-slate-900">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Top navigation */}
-      <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
-        <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+      <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur dark:border-slate-800 dark:bg-slate-900/90">
+        <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-4 text-foreground">
           <div className="flex items-center gap-2">
             <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[#84994F]/10 text-[#84994F] font-bold">
               S
@@ -107,14 +107,14 @@ export default function Home() {
               </span>
             </div>
           </div>
-          <nav className="hidden md:flex items-center gap-6 text-sm text-slate-600">
-            <a href="#tool" className="hover:text-slate-900">
+          <nav className="hidden md:flex items-center gap-6 text-sm text-slate-600 dark:text-slate-300">
+            <a href="#tool" className="hover:text-slate-900 dark:hover:text-white">
               Tool
             </a>
-            <a href="#how-it-works" className="hover:text-slate-900">
+            <a href="#how-it-works" className="hover:text-slate-900 dark:hover:text-white">
               How it works
             </a>
-            <a href="#faq" className="hover:text-slate-900">
+            <a href="#faq" className="hover:text-slate-900 dark:hover:text-white">
               FAQ
             </a>
           </nav>
@@ -132,7 +132,7 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-4 py-10 space-y-16">
+      <main className="max-w-5xl mx-auto px-4 py-10 space-y-16 text-foreground">
         {/* Hero + tool */}
         <section id="hero" className="grid gap-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] items-start">
           <div className="space-y-6">
@@ -143,10 +143,10 @@ export default function Home() {
               100% free on-page SEO checker
             </div>
             <div className="space-y-3">
-              <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900">
+              <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-50">
                 See your on-page SEO health in seconds.
               </h1>
-              <p className="text-sm md:text-base text-slate-600 max-w-xl">
+              <p className="text-sm md:text-base text-slate-600 dark:text-slate-300 max-w-xl">
                 Enter a page URL and target keyword. We analyze your on-page SEO and surface clear, prioritized fixes you can act on today.
               </p>
             </div>
@@ -177,16 +177,16 @@ export default function Home() {
           <section
             id="tool"
             aria-label="On-page SEO analysis tool"
-            className="bg-white rounded-2xl shadow-md border border-slate-200 p-6 md:p-7"
+            className="bg-white rounded-2xl shadow-md border border-slate-200 p-6 md:p-7 dark:bg-slate-900 dark:border-slate-800"
           >
-            <h2 className="text-base font-semibold text-slate-900 mb-4">
+            <h2 className="text-base font-semibold text-slate-900 dark:text-slate-50 mb-4">
               Run a free on-page SEO check
             </h2>
 
             {/* Input Form */}
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="space-y-2">
-                <label htmlFor="url" className="block text-xs font-medium text-slate-700">
+                <label htmlFor="url" className="block text-xs font-medium text-slate-700 dark:text-slate-200">
                   Page URL
                 </label>
                 <input
@@ -195,12 +195,12 @@ export default function Home() {
                   value={url}
                   onChange={(e) => setUrl(e.target.value)}
                   placeholder="https://example.com/your-page"
-                  className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm focus:border-[#84994F] focus:outline-none focus:ring-2 focus:ring-[#84994F]/40"
+                  className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm focus:border-[#84994F] focus:outline-none focus:ring-2 focus:ring-[#84994F]/40 dark:bg-slate-900 dark:border-slate-700 dark:text-slate-100"
                   required
                 />
               </div>
               <div className="space-y-2">
-                <label htmlFor="keyword" className="block text-xs font-medium text-slate-700">
+                <label htmlFor="keyword" className="block text-xs font-medium text-slate-700 dark:text-slate-200">
                   Target keyword
                 </label>
                 <input
@@ -209,13 +209,13 @@ export default function Home() {
                   value={keyword}
                   onChange={(e) => setKeyword(e.target.value)}
                   placeholder="e.g. best running shoes for women"
-                  className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm focus:border-[#84994F] focus:outline-none focus:ring-2 focus:ring-[#84994F]/40"
+                  className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm focus:border-[#84994F] focus:outline-none focus:ring-2 focus:ring-[#84994F]/40 dark:bg-slate-900 dark:border-slate-700 dark:text-slate-100"
                   required
                 />
               </div>
 
               {error && (
-                <div className="rounded-lg border border-[#A72703]/30 bg-[#A72703]/5 px-3 py-2 text-xs text-[#A72703]">
+                <div className="rounded-lg border border-[#A72703]/30 bg-[#A72703]/5 px-3 py-2 text-xs text-[#A72703] dark:border-[#fecaca]/40 dark:bg-[#7f1d1d]/40 dark:text-[#fecaca]">
                   {error}
                 </div>
               )}
@@ -235,135 +235,139 @@ export default function Home() {
                 )}
               </button>
 
-              <p className="text-[11px] text-slate-500">
+              <p className="text-[11px] text-slate-500 dark:text-slate-400">
                 We only use your URL to run this analysis. No crawling beyond the page you provide.
               </p>
             </form>
-
-            {/* Results Section */}
-            {result && (
-              <div className="mt-8 space-y-6">
-                <SEOScoreCard
-                  score={result.scorePercentage}
-                  date={new Date().toISOString().slice(0, 10)}
-                  keyword={result.keyword}
-                  url={result.url}
-                />
-
-                {/* Sections Overview */}
-                <div className="grid gap-5">
-                  {result.sections.map((section) => {
-                    const sectionStatus = section.scorePercentage >= 80 ? 'good' : section.scorePercentage >= 60 ? 'average' : 'poor';
-                    const sectionStatusConfig = {
-                      good: {
-                        color: 'bg-[#84994F]/5 text-[#84994F]',
-                        badge: 'bg-[#84994F]',
-                        label: 'Optimized',
-                      },
-                      average: {
-                        color: 'bg-[#FCB53B]/5 text-[#FCB53B]',
-                        badge: 'bg-[#FCB53B]',
-                        label: 'Needs improvement',
-                      },
-                      poor: {
-                        color: 'bg-[#A72703]/5 text-[#A72703]',
-                        badge: 'bg-[#A72703]',
-                        label: 'Critical',
-                      },
-                    } as const;
-                    const config = sectionStatusConfig[sectionStatus];
-                    return (
-                      <div
-                        key={section.id}
-                        className={`border border-slate-200 rounded-xl bg-white p-4 text-sm ${config.color}`}
-                      >
-                        <div className="flex items-center justify-between mb-4">
-                          <div className="flex items-center gap-4">
-                            <div className={`w-10 h-10 flex items-center justify-center rounded-full font-bold text-white text-xl ${config.badge}`}>{section.scorePercentage}</div>
-                            <div>
-                              <h3 className="text-sm font-semibold text-slate-900">{section.label}</h3>
-                              <span className="mt-1 inline-flex text-[11px] font-medium px-2 py-0.5 rounded-full bg-[#F5F5F7] border border-slate-200 text-slate-700">
-                                {config.label}
-                              </span>
-                            </div>
-                          </div>
-                          <div className="text-right">
-                            <div className="text-xs text-slate-500">
-                              {section.score}/{section.maxScore} points
-                            </div>
-                          </div>
-                        </div>
-                        {/* Rules List */}
-                        <div className="space-y-2">
-                          {section.rules.map((rule) => {
-                            const ruleStatus = rule.status === 'pass' ? 'good' : 'poor';
-                            const ruleConfig = ruleStatus === 'good'
-                              ? { bg: 'bg-[#84994F]/5 border-[#84994F]/20', badge: 'bg-[#84994F]', label: 'PASS', text: 'text-[#84994F]' }
-                              : { bg: 'bg-[#A72703]/5 border-[#A72703]/20', badge: 'bg-[#A72703]', label: 'ISSUE', text: 'text-[#A72703]' };
-                            return (
-                              <div
-                                key={rule.id}
-                                className={`p-3 rounded-lg border ${ruleConfig.bg}`}
-                              >
-                                <div className="flex items-center justify-between">
-                                  <div className="flex items-center gap-3">
-                                    <div className={`w-3 h-3 rounded-full ${ruleConfig.badge}`}></div>
-                                    <div>
-                                      <span className="font-medium text-slate-900 text-sm">{rule.label}</span>
-                                      <p className="text-xs text-slate-600 mt-0.5">{rule.explanation}</p>
-                                      {rule.details && (
-                                        <div className="mt-2 p-2 bg-slate-100 rounded text-[11px] text-slate-700">
-                                          <strong>Details:</strong>
-                                          {typeof rule.details === 'object' && rule.details !== null ? (
-                                            <ul className="list-disc pl-5 mt-1">
-                                              {Object.entries(rule.details).map(([key, value]) => (
-                                                <li key={key} className="break-all">
-                                                  <span className="font-semibold">{key}:</span> {Array.isArray(value)
-                                                    ? (
-                                                        <ul className="list-decimal pl-5 mt-1">
-                                                          {value.map((item, idx) => (
-                                                            <li key={idx} className="break-all">
-                                                              {typeof item === 'object' && item !== null
-                                                                ? <pre className="whitespace-pre-wrap bg-slate-200 rounded p-1 overflow-x-auto">{JSON.stringify(item, null, 2)}</pre>
-                                                                : String(item)}
-                                                            </li>
-                                                          ))}
-                                                        </ul>
-                                                      )
-                                                    : (typeof value === 'object' && value !== null
-                                                        ? <pre className="whitespace-pre-wrap bg-slate-200 rounded p-1 overflow-x-auto">{JSON.stringify(value, null, 2)}</pre>
-                                                        : String(value)
-                                                    )}
-                                                </li>
-                                              ))}
-                                            </ul>
-                                          ) : (
-                                            <span className="ml-1">{String(rule.details)}</span>
-                                          )}
-                                        </div>
-                                      )}
-                                    </div>
-                                  </div>
-                                  <div className="text-right">
-                                    <span className={`text-xs font-semibold ${ruleConfig.text}`}>{ruleConfig.label}</span>
-                                    <p className="text-xs text-slate-600 mt-1">
-                                      {rule.score}/{rule.maxScore} points
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-              </div>
-            )}
           </section>
         </section>
+
+        {/* Results Section - full width layout */}
+        {result && (
+          <section
+            aria-label="SEO analysis report"
+            className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] items-start"
+          >
+            <div className="space-y-4">
+              <SEOScoreCard
+                score={result.scorePercentage}
+                date={new Date().toISOString().slice(0, 10)}
+                keyword={result.keyword}
+                url={result.url}
+              />
+            </div>
+
+            {/* Sections Overview */}
+            <div className="space-y-5">
+              {result.sections.map((section) => {
+                const sectionStatus = section.scorePercentage >= 80 ? 'good' : section.scorePercentage >= 60 ? 'average' : 'poor';
+                const sectionStatusConfig = {
+                  good: {
+                    color: 'bg-[#84994F]/5 text-[#84994F]',
+                    badge: 'bg-[#84994F]',
+                    label: 'Optimized',
+                  },
+                  average: {
+                    color: 'bg-[#FCB53B]/5 text-[#FCB53B]',
+                    badge: 'bg-[#FCB53B]',
+                    label: 'Needs improvement',
+                  },
+                  poor: {
+                    color: 'bg-[#A72703]/5 text-[#A72703]',
+                    badge: 'bg-[#A72703]',
+                    label: 'Critical',
+                  },
+                } as const;
+                const config = sectionStatusConfig[sectionStatus];
+                return (
+                  <div
+                    key={section.id}
+                    className={`border border-slate-200 rounded-xl bg-white p-4 text-sm ${config.color}`}
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-4">
+                        <div className={`w-10 h-10 flex items-center justify-center rounded-full font-bold text-white text-xl ${config.badge}`}>{section.scorePercentage}</div>
+                        <div>
+                          <h3 className="text-sm font-semibold text-slate-900">{section.label}</h3>
+                          <span className="mt-1 inline-flex text-[11px] font-medium px-2 py-0.5 rounded-full bg-[#F5F5F7] border border-slate-200 text-slate-700">
+                            {config.label}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-xs text-slate-500">
+                          {section.score}/{section.maxScore} points
+                        </div>
+                      </div>
+                    </div>
+                    {/* Rules List */}
+                    <div className="space-y-2">
+                      {section.rules.map((rule) => {
+                        const ruleStatus = rule.status === 'pass' ? 'good' : 'poor';
+                        const ruleConfig = ruleStatus === 'good'
+                          ? { bg: 'bg-[#84994F]/5 border-[#84994F]/20', badge: 'bg-[#84994F]', label: 'PASS', text: 'text-[#84994F]' }
+                          : { bg: 'bg-[#A72703]/5 border-[#A72703]/20', badge: 'bg-[#A72703]', label: 'ISSUE', text: 'text-[#A72703]' };
+                        return (
+                          <div
+                            key={rule.id}
+                            className={`p-3 rounded-lg border ${ruleConfig.bg}`}
+                          >
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-3">
+                                <div className={`w-3 h-3 rounded-full ${ruleConfig.badge}`}></div>
+                                <div>
+                                  <span className="font-medium text-slate-900 text-sm">{rule.label}</span>
+                                  <p className="text-xs text-slate-600 mt-0.5">{rule.explanation}</p>
+                                  {rule.details && (
+                                    <div className="mt-2 p-2 bg-slate-100 rounded text-[11px] text-slate-700">
+                                      <strong>Details:</strong>
+                                      {typeof rule.details === 'object' && rule.details !== null ? (
+                                        <ul className="list-disc pl-5 mt-1">
+                                          {Object.entries(rule.details).map(([key, value]) => (
+                                            <li key={key} className="break-all">
+                                              <span className="font-semibold">{key}:</span> {Array.isArray(value)
+                                                ? (
+                                                    <ul className="list-decimal pl-5 mt-1">
+                                                      {value.map((item, idx) => (
+                                                        <li key={idx} className="break-all">
+                                                          {typeof item === 'object' && item !== null
+                                                            ? <pre className="whitespace-pre-wrap bg-slate-200 rounded p-1 overflow-x-auto">{JSON.stringify(item, null, 2)}</pre>
+                                                            : String(item)}
+                                                        </li>
+                                                      ))}
+                                                    </ul>
+                                                  )
+                                                : (typeof value === 'object' && value !== null
+                                                    ? <pre className="whitespace-pre-wrap bg-slate-200 rounded p-1 overflow-x-auto">{JSON.stringify(value, null, 2)}</pre>
+                                                    : String(value)
+                                                )}
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      ) : (
+                                        <span className="ml-1">{String(rule.details)}</span>
+                                      )}
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                              <div className="text-right">
+                                <span className={`text-xs font-semibold ${ruleConfig.text}`}>{ruleConfig.label}</span>
+                                <p className="text-xs text-slate-600 mt-1">
+                                  {rule.score}/{rule.maxScore} points
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
 
         {/* How it works */}
         <section id="how-it-works" className="space-y-6">

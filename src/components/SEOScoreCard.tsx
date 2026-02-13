@@ -70,7 +70,7 @@ export default function SEOScoreCard({
       relative overflow-hidden
     `}>
       {/* TITLE */}
-      <h2 className="text-3xl font-bold mb-3 relative z-10">
+      <h2 className="text-3xl font-bold mb-3 relative z-10 text-slate-900 dark:text-slate-50">
         Your score is{' '}
         <span className={`${config.color} font-extrabold tracking-tight`}>
           {status}
@@ -84,11 +84,11 @@ export default function SEOScoreCard({
         mb-4 relative z-10
       `}>
         <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${config.gradient}`}></div>
-        <span className="text-slate-300">SEO Performance</span>
+        <span className="text-slate-700 dark:text-slate-200">SEO Performance</span>
       </div>
 
       {/* DESCRIPTION */}
-      <p className="text-slate-300 max-w-2xl mx-auto text-sm leading-relaxed relative z-10">
+      <p className="text-slate-700 dark:text-slate-300 max-w-2xl mx-auto text-sm leading-relaxed relative z-10">
         We’ve successfully processed your page and calculated a score
         representing how closely this page follows the current guidelines
         for on-page SEO.
@@ -152,22 +152,22 @@ export default function SEOScoreCard({
       </div>
 
       {/* META */}
-      <div className="flex justify-center gap-8 text-sm text-slate-300 relative z-10">
-        <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm px-3 py-2 rounded-lg border border-white/10 hover:bg-white/10 transition-colors">
-          <span className="text-slate-400">📅</span>
+      <div className="flex justify-center gap-4 md:gap-8 text-sm text-slate-700 dark:text-slate-300 flex-wrap relative z-10">
+        <div className="flex items-center gap-3 bg-white/70 dark:bg-white/5 backdrop-blur-sm px-3 py-2 rounded-lg border border-slate-200 dark:border-white/10 hover:bg-white dark:hover:bg-white/10 transition-colors">
+          <span className="text-slate-500 dark:text-slate-300">📅</span>
           <span className="font-medium">{date}</span>
         </div>
-        <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm px-3 py-2 rounded-lg border border-white/10 hover:bg-white/10 transition-colors">
-          <span className="text-slate-400">🔑</span>
+        <div className="flex items-center gap-3 bg-white/70 dark:bg-white/5 backdrop-blur-sm px-3 py-2 rounded-lg border border-slate-200 dark:border-white/10 hover:bg-white dark:hover:bg-white/10 transition-colors">
+          <span className="text-slate-500 dark:text-slate-300">🔑</span>
           <span className="font-medium">{keyword}</span>
         </div>
-        <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm px-3 py-2 rounded-lg border border-white/10 hover:bg-white/10 transition-colors">
-          <span className="text-slate-400">🏠</span>
+        <div className="flex items-center gap-3 bg-white/70 dark:bg-white/5 backdrop-blur-sm px-3 py-2 rounded-lg border border-slate-200 dark:border-white/10 hover:bg-white dark:hover:bg-white/10 transition-colors">
+          <span className="text-slate-500 dark:text-slate-300">🏠</span>
           <a
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium hover:text-white hover:underline underline-offset-4 transition-colors"
+            className="font-medium text-slate-800 dark:text-slate-100 hover:text-slate-900 dark:hover:text-white hover:underline underline-offset-4 transition-colors"
           >
             {url.length > 30 ? `${url.substring(0, 30)}...` : url}
           </a>
