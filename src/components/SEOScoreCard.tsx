@@ -20,27 +20,27 @@ export default function SEOScoreCard({
     switch (status) {
       case 'good':
         return {
-          color: 'text-emerald-400',
-          bg: 'bg-emerald-500/10',
-          border: 'border-emerald-500/20',
-          gradient: 'from-emerald-400 via-emerald-500 to-emerald-600',
-          shadow: 'shadow-emerald-500/20'
+          color: 'text-[#84994F]',
+          bg: 'bg-[#84994F]/10',
+          border: 'border-[#84994F]/20',
+          gradient: 'from-[#84994F] via-[#6a7a3f] to-[#4d5a2f]',
+          shadow: 'shadow-[#84994F]/20'
         };
       case 'average':
         return {
-          color: 'text-yellow-400',
-          bg: 'bg-yellow-500/10',
-          border: 'border-yellow-500/20',
-          gradient: 'from-yellow-400 via-yellow-500 to-yellow-600',
-          shadow: 'shadow-yellow-500/20'
+          color: 'text-[#FCB53B]',
+          bg: 'bg-[#FCB53B]/10',
+          border: 'border-[#FCB53B]/20',
+          gradient: 'from-[#FCB53B] via-[#d99a2b] to-[#b67f22]',
+          shadow: 'shadow-[#FCB53B]/20'
         };
       case 'poor':
         return {
-          color: 'text-red-400',
-          bg: 'bg-red-500/10',
-          border: 'border-red-500/20',
-          gradient: 'from-red-400 via-red-500 to-red-600',
-          shadow: 'shadow-red-500/20'
+          color: 'text-[#A72703]',
+          bg: 'bg-[#A72703]/10',
+          border: 'border-[#A72703]/20',
+          gradient: 'from-[#A72703] via-[#861f02] to-[#651702]',
+          shadow: 'shadow-[#A72703]/20'
         };
       default:
         return {
@@ -128,14 +128,14 @@ export default function SEOScoreCard({
               strokeLinecap="round"
               className="transition-all duration-1000 ease-out"
               style={{
-                filter: `drop-shadow(0 0 8px rgba(${status === 'good' ? '16, 185, 129' : status === 'average' ? '234, 179, 8' : '239, 68, 68'}, 0.4))`
+                filter: `drop-shadow(0 0 8px rgba(${status === 'good' ? '132, 153, 79' : status === 'average' ? '252, 181, 59' : '167, 39, 3'}, 0.4))`
               }}
             />
             {/* Gradient definition */}
             <defs>
               <linearGradient id={`gradient-${status}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor={status === 'good' ? '#10b981' : status === 'average' ? '#eab308' : '#ef4444'} />
-                <stop offset="100%" stopColor={status === 'good' ? '#065f46' : status === 'average' ? '#a16207' : '#7f1d1d'} />
+                <stop offset="0%" stopColor={status === 'good' ? '#84994F' : status === 'average' ? '#FCB53B' : '#A72703'} />
+                <stop offset="100%" stopColor={status === 'good' ? '#6a7a3f' : status === 'average' ? '#d99a2b' : '#861f02'} />
               </linearGradient>
             </defs>
             {/* Score text */}
@@ -185,4 +185,4 @@ export default function SEOScoreCard({
       <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${config.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
     </div>
   );
-}
+} 
