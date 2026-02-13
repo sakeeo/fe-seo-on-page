@@ -21,7 +21,7 @@ export default function SEOScoreCard({
       case 'good':
         return {
           color: 'text-[#84994F]',
-          bg: 'bg-[#84994F]/10',
+          bg: 'bg-[#84994F]/5',
           border: 'border-[#84994F]/20',
           gradient: 'from-[#84994F] via-[#6a7a3f] to-[#4d5a2f]',
           shadow: 'shadow-[#84994F]/20'
@@ -29,7 +29,7 @@ export default function SEOScoreCard({
       case 'average':
         return {
           color: 'text-[#FCB53B]',
-          bg: 'bg-[#FCB53B]/10',
+          bg: 'bg-[#FCB53B]/5',
           border: 'border-[#FCB53B]/20',
           gradient: 'from-[#FCB53B] via-[#d99a2b] to-[#b67f22]',
           shadow: 'shadow-[#FCB53B]/20'
@@ -37,7 +37,7 @@ export default function SEOScoreCard({
       case 'poor':
         return {
           color: 'text-[#A72703]',
-          bg: 'bg-[#A72703]/10',
+          bg: 'bg-[#A72703]/5',
           border: 'border-[#A72703]/20',
           gradient: 'from-[#A72703] via-[#861f02] to-[#651702]',
           shadow: 'shadow-[#A72703]/20'
@@ -61,21 +61,14 @@ export default function SEOScoreCard({
 
   return (
     <div className={`
-      bg-gradient-to-br ${config.bg} 
-      border ${config.border} 
-      rounded-2xl px-10 py-12 text-center 
-      backdrop-blur-sm
-      shadow-lg ${config.shadow}
-      hover:shadow-xl hover:scale-105 transition-all duration-300
+      bg-gradient-to-br ${config.bg}
+      border ${config.border}
+      rounded-2xl px-8 py-8 text-center
+      shadow-md ${config.shadow}
+      hover:shadow-lg transition-all duration-300
       group
       relative overflow-hidden
     `}>
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 opacity-5">
-        <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${config.gradient} rounded-full transform translate-x-16 -translate-y-16`}></div>
-        <div className={`absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br ${config.gradient} rounded-full transform -translate-x-12 translate-y-12`}></div>
-      </div>
-
       {/* TITLE */}
       <h2 className="text-3xl font-bold mb-3 relative z-10">
         Your score is{' '}
